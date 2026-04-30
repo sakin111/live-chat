@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1777528339050,
+      "tag": "0000_chubby_wolfpack",
+      "breakpoints": true
+    }
+  ]
+}

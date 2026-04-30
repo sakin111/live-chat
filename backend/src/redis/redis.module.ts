@@ -12,6 +12,8 @@ export const REDIS_SUB = 'REDIS_SUB';
       provide: REDIS,
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
+        const url = configService.get<string>('REDIS_URL');
+        if (url) return new Redis(url);
         return new Redis({
           host: configService.get<string>('REDIS_HOST', 'localhost'),
           port: configService.get<number>('REDIS_PORT', 6379),
@@ -23,6 +25,8 @@ export const REDIS_SUB = 'REDIS_SUB';
       provide: REDIS_SUB,
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
+        const url = configService.get<string>('REDIS_URL');
+        if (url) return new Redis(url);
         return new Redis({
           host: configService.get<string>('REDIS_HOST', 'localhost'),
           port: configService.get<number>('REDIS_PORT', 6379),

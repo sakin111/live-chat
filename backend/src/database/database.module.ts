@@ -16,6 +16,7 @@ export const DRIZZLE = 'DRIZZLE';
         const connectionString = configService.get<string>('DATABASE_URL');
         const pool = new Pool({
           connectionString,
+          ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
         });
         return drizzle(pool, { schema });
       },
