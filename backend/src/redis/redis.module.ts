@@ -13,11 +13,13 @@ export const REDIS_SUB = 'REDIS_SUB';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         const url = configService.get<string>('REDIS_URL');
-        if (url) return new Redis(url);
+        const options = { maxRetriesPerRequest: null };
+        if (url) return new Redis(url, options);
         return new Redis({
           host: configService.get<string>('REDIS_HOST', 'localhost'),
           port: configService.get<number>('REDIS_PORT', 6379),
           password: configService.get<string>('REDIS_PASSWORD', ''),
+          ...options,
         });
       },
     },
@@ -26,11 +28,13 @@ export const REDIS_SUB = 'REDIS_SUB';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         const url = configService.get<string>('REDIS_URL');
-        if (url) return new Redis(url);
+        const options = { maxRetriesPerRequest: null };
+        if (url) return new Redis(url, options);
         return new Redis({
           host: configService.get<string>('REDIS_HOST', 'localhost'),
           port: configService.get<number>('REDIS_PORT', 6379),
           password: configService.get<string>('REDIS_PASSWORD', ''),
+          ...options,
         });
       },
     },
