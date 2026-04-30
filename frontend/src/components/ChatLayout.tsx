@@ -9,8 +9,8 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Send, Users, Hash, Settings, LogIn, Loader2 } from 'lucide-react';
 import { io, Socket } from 'socket.io-client';
 
-const API_BASE = 'http://localhost:3000/api/v1';
-const SOCKET_URL = 'http://localhost:3000/chat';
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:3000/api/v1';
+const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3000/chat';
 
 interface Message {
   id: string;

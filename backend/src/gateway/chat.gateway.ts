@@ -12,7 +12,13 @@ import { AuthService } from '../auth/auth.service';
 import { RoomsService } from '../rooms/rooms.service';
 import { REDIS, REDIS_SUB } from '../redis/redis.module';
 
-@WebSocketGateway({ namespace: '/chat', cors: { origin: '*' } })
+@WebSocketGateway({
+  namespace: '/chat',
+  cors: {
+    origin: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : '*',
+    credentials: true,
+  },
+})
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect, OnModuleInit {
   @WebSocketServer()
   server: Server;
